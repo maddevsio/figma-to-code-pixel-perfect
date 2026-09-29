@@ -87,7 +87,7 @@ function decoration(n) {
 }
 
 function textStyleKey(s) {
-  const lh = s.lineHeightPx ? round(s.lineHeightPx) : "auto";
+  const lh = s.lineHeightUnit === "INTRINSIC_%" ? `auto(${round(s.lineHeightPx)})` : round(s.lineHeightPx);
   const ls = s.letterSpacing ? round(s.letterSpacing) : 0;
   return `${s.fontFamily} ${s.fontWeight} ${round(s.fontSize)}/${lh} ls:${ls}${s.textCase && s.textCase !== "ORIGINAL" ? " " + s.textCase.toLowerCase() : ""}`;
 }
@@ -99,14 +99,14 @@ function distillFrame(root, styleNames, componentNames, legend) {
     const indent = "  ".repeat(depth);
     const name = n.name.replace(/\s+/g, " ").trim();
     if (n.type === "TEXT") {
-      const styleName = styleNames[n.styles?.text] ?? "⚠unstyled";
       const key = textStyleKey(n.style);
-      if (!legend.has(styleName)) legend.set(styleName, key);
-      const override = legend.get(styleName) === key ? "" : ` ⚠override(${key})`;
+      const styleName = styleNames[n.styles?.text];
+      if (styleName && !legend.has(styleName)) legend.set(styleName, key);
+      const style = !styleName ? `⚠unstyled(${key})` : legend.get(styleName) === key ? styleName : `${styleName} ⚠override(${key})`;
       const text = n.characters.replace(/\s+/g, " ").trim();
       const shown = text.length > MAX_TEXT ? text.slice(0, MAX_TEXT) + "…" : text;
       const align = n.style.textAlignHorizontal !== "LEFT" ? ` align:${n.style.textAlignHorizontal.toLowerCase()}` : "";
-      lines.push(`${indent}- text ${styleName} ${paints(n.fills)}${align}${override} ${box(n, parent)} "${shown}"`);
+      lines.push(`${indent}- text #${n.id} ${style} ${paints(n.fills)}${align} ${box(n, parent)} "${shown}"`);
       return;
     }
     const component = n.componentId ? componentNames[n.componentId] : undefined;
