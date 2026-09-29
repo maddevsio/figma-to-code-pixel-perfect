@@ -29,34 +29,84 @@ Built for coding agents: a snapshot they can read offline, distilled specs they 
 
 No npm dependencies: Node ≥ 22 and an installed Chrome/Chromium (DevTools protocol over the built-in WebSocket).
 
-## Quick start
+## Step by step
+
+**1. Install** (not on npm yet, so `npx`/`pnpm dlx` without install will not find it):
 
 ```bash
-npm i -D github:<owner>/figma-to-code-pixel-perfect
+npm i -D github:<owner>/figma-to-code-pixel-perfect   # or: pnpm add -D github:<owner>/figma-to-code-pixel-perfect
 ```
 
-1. **Snapshot.** Copy [`examples/design/snapshot.json`](examples/design/snapshot.json) to `design/snapshot.json`, set your Figma file key and the frame node ids (from the Figma URL, `node-id=1-2` → `"1:2"`).
+**2. Get a Figma token.** Figma → Settings → Security → Personal access tokens, scopes `file_content:read` and `library_content:read`. Keep it in your shell, never in the repo:
 
-   ```bash
-   npx figma-snapshot --dry-run                      # shows the requests it would make
-   FIGMA_TOKEN=<personal access token> npx figma-snapshot
-   npx figma-distill                                 # design/<batch>/specs/*.md
-   ```
+```bash
+export FIGMA_TOKEN=<token>
+```
 
-2. **Map.** List the node ids of a frame and write a check file ([example](examples/pixel-checks/home.json)):
+**3. Pick frames.** In Figma select a frame (not the page) → right click → Copy link to selection. From `.../design/<fileKey>/...?node-id=1-2` take the file key and the node id `1:2`.
 
-   ```bash
-   npx pixel-check --tree 1:2 --depth 4
-   ```
+**4. Describe the snapshot** in `design/snapshot.json`:
 
-3. **Check.** Start your site, then:
+```json
+{
+  "fileKey": "<fileKey>",
+  "batches": {
+    "home": { "home-desktop": "1:2" }
+  }
+}
+```
 
-   ```bash
-   npx pixel-check pixel-checks/home.json              # exit 1 on any FAIL
-   npx pixel-check pixel-checks/home.json --coverage   # no browser: what is not mapped yet
-   ```
+**5. Fetch it.** Always dry-run first: View/Collab seats get about 20 requests a month.
 
-   Look at `tmp/pixel/<screen>.png` next to the Figma PNG for what the map does not cover.
+```bash
+npx figma-snapshot --dry-run   # prints the requests
+npx figma-snapshot             # design/home/nodes.json + frames/home-desktop.png
+npx figma-distill              # design/home/specs/home-desktop.md: readable spec
+```
+
+**6. Export vectors** (icons, illustrations, irregular shapes) as SVG: add a batch and run `npx figma-snapshot` again (1 request):
+
+```json
+"home-assets": { "fetchData": false, "format": "svg", "nodes": { "logo": "1:3", "hero-art": "1:15" } }
+```
+
+**7. Build the page** from the spec and the frame PNG, then run your site (any server):
+
+```bash
+npm run dev   # or: python3 -m http.server 3000 -d site
+```
+
+**8. Map Figma nodes to DOM** in `pixel-checks/home.json` ([example](examples/pixel-checks/home.json)). Node ids:
+
+```bash
+npx pixel-check --tree 1:2 --depth 4
+```
+
+```json
+{
+  "path": "/",
+  "screens": [
+    {
+      "name": "home-desktop", "frame": "1:2", "width": 1440,
+      "items": [
+        { "node": "1:9", "selector": "h1" },
+        { "node": "1:14", "selector": "a.more" }
+      ]
+    }
+  ]
+}
+```
+
+**9. Check.**
+
+```bash
+npx pixel-check pixel-checks/home.json --coverage   # everything mapped? (no browser)
+npx pixel-check pixel-checks/home.json              # FAIL rows: expected vs actual; exit 1 on any FAIL
+```
+
+Fix, rerun, until `PASSED`.
+
+**10. Look.** Open `tmp/pixel/home-desktop.png` next to `design/home/frames/home-desktop.png`. The check measures boxes, text and colors; image content, SVG shapes and shadows are yours to eyeball.
 
 The full procedure, check-file format, measurement rules and what to map: [docs/workflow.md](docs/workflow.md).
 
