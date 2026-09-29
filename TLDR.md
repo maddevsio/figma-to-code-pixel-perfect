@@ -2,9 +2,9 @@
 
 **What:** lets an AI agent build pages that match Figma, and prove it.
 
-**Who:** you, if an agent (Claude, Codex, Cursor, Gemini) turns your Figma designs into pages.
+**Who:** your agent (Claude, Codex, Cursor, Gemini) that turns your Figma designs into pages.
 
-**Why:** agents say "done, pixel-perfect" without checking. Here they can't: the agent measures its page against Figma and fixes it until every element is within 1px.
+**Why:** agent measures page it built against Figma and fixes it until every element is within 1px.
 
 **How:**
 
