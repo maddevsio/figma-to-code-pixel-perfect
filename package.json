@@ -1,7 +1,7 @@
 {
   "name": "figma-to-code-pixel-perfect",
   "version": "0.1.0",
-  "description": "Check a rendered page against a frozen Figma snapshot: mapped geometry, typography and color checks in headless Chrome, plus an agent-agnostic page pipeline",
+  "description": "Lets AI coding agents build pixel-perfect pages from Figma and prove it: Figma snapshot, element-by-element check in headless Chrome, plan-build-review pipeline",
   "type": "module",
   "license": "Apache-2.0",
   "author": "Mad Devs LLC",

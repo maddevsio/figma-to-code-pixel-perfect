@@ -1,16 +1,15 @@
 # TL;DR
 
-**What:** tells you where your page differs from Figma. `Title y: expected 24, actual 32`.
+**What:** lets an AI agent build pages that match Figma, and prove it.
 
-**Who:** frontend devs and AI coding agents building pages from Figma.
+**Who:** you, if an agent (Claude, Codex, Cursor, Gemini) turns your Figma designs into pages.
 
-**When:** after building a page, and after any shared CSS change.
+**Why:** agents say "done, pixel-perfect" without checking. Here they can't: the agent measures its page against Figma and fixes it until every element is within 1px.
 
 **How:**
 
-```bash
-npx figma-snapshot                       # save Figma frames to the repo
-npx pixel-check pixel-checks/home.json   # compare page with Figma
-```
+1. Save Figma frames into the repo: `npx figma-snapshot`
+2. Tell the agent: `Run pixel-agent/pipeline.md for page home`
+3. Get a branch with the page, a passing check and screenshots next to Figma.
 
-Fix FAIL rows, rerun until PASSED. Setup: [README](README.md).
+Setup: [README](README.md).

@@ -2,7 +2,7 @@
 
 Short version: [TLDR.md](TLDR.md).
 
-Checks a rendered page against Figma, element by element. Map Figma node ids to CSS selectors; `pixel-check` renders the page in headless Chrome and compares position, size, typography and color with a frozen Figma snapshot.
+Lets an AI coding agent build pages that match Figma, and prove it. You save the design into the repo; the agent builds the page and loops on `pixel-check` until every mapped element matches Figma's position, size, typography and color within 1px.
 
 ```
 ## home-desktop (1440px) — 41 pass, 2 fail, 0 pending, 1 warn, 0 skip
