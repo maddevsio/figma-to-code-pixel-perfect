@@ -11,7 +11,7 @@
     "figma-snapshot": "bin/figma-snapshot.mjs",
     "figma-distill": "bin/figma-distill.mjs"
   },
-  "files": ["NOTICE", "bin", "lib", "!lib/*.test.mjs", "docs", "pixel-agent", "examples"],
+  "files": ["NOTICE", "TLDR.md", "bin", "lib", "!lib/*.test.mjs", "docs", "pixel-agent", "examples"],
   "engines": {
     "node": ">=22"
   },

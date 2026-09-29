@@ -1,5 +1,7 @@
 # figma-to-code-pixel-perfect
 
+Short version: [TLDR.md](TLDR.md).
+
 Checks a rendered page against Figma, element by element. Map Figma node ids to CSS selectors; `pixel-check` renders the page in headless Chrome and compares position, size, typography and color with a frozen Figma snapshot.
 
 ```
