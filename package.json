@@ -4,7 +4,7 @@
   "description": "Check a rendered page against a frozen Figma snapshot: mapped geometry, typography and color checks in headless Chrome, plus an agent-agnostic page pipeline",
   "type": "module",
   "license": "Apache-2.0",
-  "author": "Mad Devs",
+  "author": "Mad Devs LLC",
   "keywords": ["figma", "pixel-perfect", "visual-testing", "design-qa", "chrome-devtools-protocol", "ai-agents", "coding-agents"],
   "bin": {
     "pixel-check": "bin/pixel-check.mjs",

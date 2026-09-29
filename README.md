@@ -107,4 +107,4 @@ Env: `FIGMA_TOKEN`, `CHROME_PATH`.
 
 ## License
 
-[Apache-2.0](LICENSE). Copyright 2026 Mad Devs.
+[Apache-2.0](LICENSE). Copyright 2026 Mad Devs LLC.
