@@ -1,7 +1,7 @@
 export const meta = {
   name: 'page-pipeline',
   description: 'Build pages from the Figma snapshot: planner brief, one builder per page looping on the live pixel check, one review of the whole branch, results back to the main agent',
-  whenToUse: 'Implement site pages without human input between steps. args: { page: "<uid>" } or { pages: ["a", "b"], concurrency?: 2 }, kind?: "<a kind from .claude/page-pipeline.md>", base?: "<branch>", briefs?: { "<uid>": "<brief.json path>" } (skip the planner on reruns). Project adapter: .claude/page-pipeline.md',
+  whenToUse: 'Implement site pages without human input between steps. args: { page: "<uid>" } or { pages: ["a", "b"], concurrency?: 2 }, kind?: "<kind from pixel-agent/project.md>", base?: "<branch>", briefs?: { "<uid>": "<brief.json path>" } (skip the planner on reruns). Procedure: pixel-agent/pipeline.md',
   phases: [
     { title: 'Plan', detail: 'planner: build brief per page' },
     { title: 'Build', detail: 'builder: fixture, pixel map, blocks, live pixel loop, gates' },
@@ -14,7 +14,7 @@ if (!pages || pages.length === 0) throw new Error('args.page or args.pages is re
 const base = (args && args.base) || null
 
 // Kinds (where a page's content lives, which route renders it) are project knowledge: the planner resolves
-// `kind` to `source` and `path` from .claude/page-pipeline.md and returns them in the brief.
+// `kind` to `source` and `path` from pixel-agent/project.md and returns them in the brief.
 const kind = (args && args.kind) || 'page'
 const target = (page) => ({ page, kind })
 const CONCURRENCY = (args && args.concurrency) || 2

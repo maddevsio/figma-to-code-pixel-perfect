@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Page worktrees for the page pipeline (.claude/page-pipeline.md).
-#   scripts/worktree.sh paths                print main checkout and worktrees folder
-#   scripts/worktree.sh setup <page> [base]  page/<page> branch + <worktrees>/<page> worktree: create, or reuse and rebase onto base
-#   scripts/worktree.sh serve                install deps, copy .env from the main checkout, dev server on a free port
-#   scripts/worktree.sh stop                 stop the dev server started by serve
+# Page worktrees for the page pipeline (pixel-agent/pipeline.md).
+#   pixel-agent/worktree.sh paths                print main checkout and worktrees folder
+#   pixel-agent/worktree.sh setup <page> [base]  page/<page> branch + <worktrees>/<page> worktree: create, or reuse and rebase onto base
+#   pixel-agent/worktree.sh serve                install deps, copy .env from the main checkout, dev server on a free port
+#   pixel-agent/worktree.sh stop                 stop the dev server started by serve
 # Never prints .env contents. Needs setsid (Linux; macOS: brew install util-linux).
 set -euo pipefail
 
@@ -22,7 +22,7 @@ paths() {
 }
 
 setup() {
-  local page="${1:?usage: scripts/worktree.sh setup <page> [base]}"
+  local page="${1:?usage: pixel-agent/worktree.sh setup <page> [base]}"
   local base="${2:-$(git -C "$main_checkout" branch --show-current)}"
   local branch="page/$page"
   local worktree="$worktrees/$page"
@@ -100,7 +100,7 @@ case "${1:-}" in
   serve) serve ;;
   stop) stop ;;
   *)
-    echo "Usage: scripts/worktree.sh paths|setup <page> [base]|serve|stop" >&2
+    echo "Usage: pixel-agent/worktree.sh paths|setup <page> [base]|serve|stop" >&2
     exit 2
     ;;
 esac
