@@ -2,16 +2,11 @@
 
 Short version: [TLDR.md](TLDR.md).
 
-Lets an AI coding agent build pages that match Figma, and prove it. You save the design into the repo; the agent builds the page and loops on `pixel-check` until every mapped element matches Figma's position, size, typography and color within 1px.
+Lets an AI coding agent build pages that match Figma, and prove it: 
 
-```
-## home-desktop (1440px) — 41 pass, 2 fail, 0 pending, 1 warn, 0 skip
-| status | node | prop | expected | actual | Δ |
-|---|---|---|---|---|---|
-| FAIL | 1:11 Subtitle | gapY (from 1:10) | 24 | 32 | 8 |
-| FAIL | 1:20 Card | w | 328 | 320 | -8 |
-| WARN | 1:11 Subtitle | fontFile | Inter 500 loaded | no file, browser falls back | |
-```
+- You save the design into the repo; 
+- the agent builds the page
+- the agent loops on `pixel-check` until every mapped element matches Figma within 1px.
 
 | Tool | Does |
 |---|---|
