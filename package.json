@@ -1,0 +1,21 @@
+{
+  "name": "figma-to-code-pixel-perfect",
+  "version": "0.1.0",
+  "description": "Check a rendered page against a frozen Figma snapshot: mapped geometry, typography and color checks in headless Chrome, plus a Claude Code page pipeline",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Mad Devs",
+  "keywords": ["figma", "pixel-perfect", "visual-testing", "design-qa", "chrome-devtools-protocol", "claude-code"],
+  "bin": {
+    "pixel-check": "bin/pixel-check.mjs",
+    "figma-snapshot": "bin/figma-snapshot.mjs",
+    "figma-distill": "bin/figma-distill.mjs"
+  },
+  "files": ["NOTICE", "bin", "lib", "!lib/*.test.mjs", "docs", "claude", "examples"],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}

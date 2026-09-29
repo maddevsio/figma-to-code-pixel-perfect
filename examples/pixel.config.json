@@ -1,0 +1,8 @@
+{
+  "designDir": "design",
+  "baseUrl": "http://localhost:3000",
+  "shotDir": "tmp/pixel",
+  "siteChrome": ["Header", "Footer"],
+  "fontWeights": { "Brand Display": { "430": 400 } },
+  "tokensCss": "src/styles/globals.css"
+}

@@ -1,0 +1,22 @@
+{
+  "fileKey": "<figma file key from the file URL>",
+  "scale": 1,
+  "batches": {
+    "home": {
+      "home-desktop": "1:2",
+      "home-mobile": "1:3"
+    },
+    "components": {
+      "button": "4:5",
+      "card": "4:6"
+    },
+    "pages": {
+      "fetchData": true,
+      "render": false,
+      "nodes": {
+        "about-desktop": "7:8",
+        "about-mobile": "7:9"
+      }
+    }
+  }
+}

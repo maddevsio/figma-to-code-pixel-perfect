@@ -1,0 +1,30 @@
+{
+  "path": "/",
+  "screens": [
+    {
+      "name": "home-desktop",
+      "frame": "1:2",
+      "width": 1440,
+      "items": [
+        { "node": "1:10", "selector": "main h1" },
+        { "node": "1:11", "selector": "main h1 + p", "anchor": "1:10", "props": ["gapY", "x", "w", "fontFamily", "fontSize", "lineHeight", "fontWeight", "color"] },
+        { "node": "1:20", "selector": "[data-slot=card]", "index": 0 },
+        { "node": "1:21", "selector": "[data-slot=card]", "index": 1, "anchor": "1:20", "props": ["x", "y", "w"] }
+      ],
+      "ignore": { "1:30": "newsletter band is checked on its own screen" }
+    },
+    {
+      "name": "home-desktop-menu-open",
+      "frame": "1:2",
+      "width": 1440,
+      "actions": [{ "click": "[aria-label='Open menu']" }],
+      "items": [{ "node": "1:40", "selector": "[role=dialog]", "props": ["x", "y", "w", "h", "opacity", "background"] }]
+    },
+    {
+      "name": "home-mobile",
+      "frame": "1:3",
+      "width": 390,
+      "items": [{ "node": "1:50", "selector": "main h1" }]
+    }
+  ]
+}
