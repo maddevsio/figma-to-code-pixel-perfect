@@ -2,6 +2,9 @@
 
 Everything project-specific for the pipeline roles. Replace the example values.
 
+<!-- TEMPLATE: delete this line once every value below is real; `npx pixel-doctor` treats the file as unfilled while it exists -->
+
+
 ## Files
 
 - Rules: `AGENTS.md`
