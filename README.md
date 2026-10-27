@@ -81,6 +81,17 @@ npx pixel-check pixel-checks/home.json
 
 Check-file format and rules: [docs/workflow.md](docs/workflow.md).
 
+## For non-technical users: skill
+
+Install once, then just ask the agent: *"Build the home page from this Figma link"*. The agent runs `npx pixel-doctor`, fixes what it can, asks you only for Figma links and a token, then runs the pipeline.
+
+```bash
+mkdir -p .claude/skills
+cp -r node_modules/figma-to-code-pixel-perfect/skills/build-page-from-figma .claude/skills/
+```
+
+Other agents: put the folder where they load skills, or point `AGENTS.md` at `skills/build-page-from-figma/SKILL.md`.
+
 ## Config
 
 Optional `pixel.config.json` (or `PIXEL_CONFIG=<path>`). [Example](examples/pixel.config.json).
