@@ -14,6 +14,7 @@ import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promis
 import { tmpdir } from "node:os";
 import { basename, join, resolve } from "node:path";
 
+import { findChrome } from "../lib/chrome.mjs";
 import { compareScreen, expectedFor, isFailing, round, validateCheck } from "../lib/compare.mjs";
 import { loadConfig } from "../lib/config.mjs";
 import { coverageFor } from "../lib/coverage.mjs";
@@ -130,7 +131,7 @@ async function referencePng(frameId) {
 // ---------- Browser ----------
 
 async function launchChrome() {
-  const binary = process.env.CHROME_PATH ?? ["/usr/bin/google-chrome", "/usr/bin/chromium", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"].find(existsSync);
+  const binary = findChrome();
   if (!binary) throw new Error("Chrome not found; set CHROME_PATH");
   const profile = await mkdtemp(join(tmpdir(), "pixel-check-"));
   const proc = spawn(binary, ["--headless=new", "--disable-gpu", "--hide-scrollbars", "--remote-debugging-port=0", `--user-data-dir=${profile}`, HOVER_POINTER, "about:blank"], {

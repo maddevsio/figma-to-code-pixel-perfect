@@ -2,10 +2,13 @@
 // Freezes Figma frames into the repo so agents never call the Figma API.
 // Tier 1 budget (View/Collab seat: up to 20/month) is spent only on missing outputs, so re-runs resume instead of re-fetching.
 // Usage: FIGMA_TOKEN=... figma-snapshot [spec.json] [--dry-run]   (spec defaults to <designDir>/snapshot.json)
+import { existsSync } from "node:fs";
 import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 
 import { loadConfig } from "../lib/config.mjs";
+
+if (existsSync(".env")) process.loadEnvFile();
 
 const argv = process.argv.slice(2);
 const isDryRun = argv.includes("--dry-run");
